@@ -11,7 +11,7 @@ const MainContent = ({ children, title }: Props) => {
   return (
     <MainContentUI>
       <Box fullWidth>
-        <Title size="lg" as="h2">
+        <Title size="lg">
           {title}
         </Title>
       </Box>

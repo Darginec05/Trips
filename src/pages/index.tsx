@@ -1,7 +1,7 @@
 import { TripList } from '../features/trip/TripList';
 
-const Trips = () => {
+const HomePage = () => {
   return <TripList />;
 };
 
-export default Trips;
+export default HomePage;

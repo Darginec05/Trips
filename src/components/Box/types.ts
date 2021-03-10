@@ -21,6 +21,7 @@ export type BoxProps = BoxMarginProps &
     justifyContent?: string;
     alignItems?: string;
     fullWidth?: boolean;
+    [x: string]: any;
   };
 
 export type BoxStyleProps = Omit<BoxProps, 'children'>;

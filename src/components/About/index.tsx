@@ -4,11 +4,8 @@ import { Typography } from '../Typography';
 
 const About = () => {
   return (
-    <RightContent>
-      <Typography size="lg" as="h2">
-        Tips & tricks
-      </Typography>
-      <Box mt={40}>
+    <RightContent title="Tips & tricks">
+      <Box>
         <Typography size="xs">
           Company was established back in the year 2007 by 3 friends who were fascinated by the web and mobile
           technologies and product design. Today, Cleevio is lead by its own CEO, David Bezdeka, and is working on

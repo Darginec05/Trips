@@ -1,0 +1,43 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  touch-action: manipulation;
+  overscroll-behavior: contain;
+  overscroll-behavior-y: contain;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  -webkit-tap-highlight-color: transparent;
+  scrollbar-width: none; /* firefox */
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+*:active {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+  font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+button:focus, input:focus {
+  outline: none;
+}
+
+div:focus {
+  outline: 0;
+}
+
+#__next {
+  width: 100%;
+  height: 100%;
+}

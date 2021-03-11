@@ -5,7 +5,6 @@ export type ContainerProps = {
   direction?: 'column' | 'row';
   leftContent?: ReactNode;
   rightContent?: ReactNode;
-  title: string;
 };
 
 export type ContainerStyleProps = Pick<ContainerProps, 'direction'>;

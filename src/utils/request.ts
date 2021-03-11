@@ -12,7 +12,7 @@ type Request = {
   options?: any;
 };
 
-export async function request({ url, method = 'GET', options = {} }: Request) {
+export async function request<T>({ url, method = 'GET', options = {} }: Request): Promise<T> {
   try {
     const response = await fetch(`${API_URI}${url}`, {
       method,

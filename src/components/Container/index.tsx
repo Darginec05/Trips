@@ -1,20 +1,17 @@
 import { ContainerUI } from './styled';
-import { MainContent } from '../MainContent';
 import { Menu } from '../Menu';
 import { ContainerProps } from './types';
+import { RightContent } from '../RightContent';
 
 const Container = ({
   children,
-  title,
-  leftContent = <Menu />,
-  rightContent,
   direction,
 }: ContainerProps) => {
   return (
     <ContainerUI direction={direction}>
-      {leftContent}
-      <MainContent title={title}>{children}</MainContent>
-      {rightContent}
+      <Menu />
+      {children}
+      <RightContent />
     </ContainerUI>
   );
 };

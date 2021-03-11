@@ -1,13 +1,19 @@
+import { useRouter } from 'next/router';
+import { useTrips } from '../../features/trip/hooks';
+import { About } from '../About';
 import { Box } from '../Box';
+import { TripListView } from '../TripListView';
 import { Typography } from '../Typography';
 import { Wrap } from './styled';
 
-type Props = {
-  children?: any;
-  title: string;
-};
+const RightContent = () => {
+  const router = useRouter();
+  const isHomePage = router.pathname === '/';
+  const { trips, isLoading } = useTrips();
 
-const RightContent = ({ children, title }: Props) => {
+  const title = isHomePage ? 'Tips & tricks' : 'Trips';
+  const content = isHomePage ? <About /> : <TripListView mode="card" trips={trips} isLoading={isLoading} />;
+
   return (
     <Wrap>
       <Box mb={40}>
@@ -15,7 +21,7 @@ const RightContent = ({ children, title }: Props) => {
           {title}
         </Typography>
       </Box>
-      {children}
+      {content}
     </Wrap>
   );
 };

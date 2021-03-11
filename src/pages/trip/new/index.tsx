@@ -1,23 +1,11 @@
-import { Container } from '../../../components/Container';
 import { Fields } from '../../../components/InputField';
-import { RightContent } from '../../../components/RightContent';
-import { TripListView } from '../../../components/TripListView';
-import { useTrips } from '../../../features/trip/hooks';
+import { MainContent } from '../../../components/MainContent';
 
 const TripCreatePage = () => {
-  const { trips, isLoading } = useTrips();
-
   return (
-    <Container
-      title="New trip"
-      rightContent={(
-        <RightContent title="Trips">
-          <TripListView mode="card" trips={trips} isLoading={isLoading} />
-        </RightContent>
-      )}
-    >
+    <MainContent title="New trip">
       <Fields isEditable buttonText="Save" />
-    </Container>
+    </MainContent>
   );
 };
 

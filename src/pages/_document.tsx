@@ -8,10 +8,9 @@ export default class MyDocument extends Document {
     const originalRenderPage = ctx.renderPage;
 
     try {
-      ctx.renderPage = () =>
-        originalRenderPage({
-          enhanceApp: (App: any) => (props: any) => sheet.collectStyles(<App {...props} />),
-        });
+      ctx.renderPage = () => originalRenderPage({
+        enhanceApp: (App: any) => (props: any) => sheet.collectStyles(<App {...props} />),
+      });
 
       const initialProps = await Document.getInitialProps(ctx);
       return {
@@ -45,10 +44,6 @@ export default class MyDocument extends Document {
           <meta name="msapplication-TileColor" content="#2B5797" />
           <meta name="msapplication-tap-highlight" content="no" />
           <meta name="theme-color" content="#000000" />
-          <meta
-            name="viewport"
-            content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=5, viewport-fit=cover"
-          />
         </Head>
         <body>
           <Main />

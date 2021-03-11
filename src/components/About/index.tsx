@@ -1,10 +1,9 @@
 import { Box } from '../Box';
-import { RightContent } from '../RightContent';
 import { Typography } from '../Typography';
 
 const About = () => {
   return (
-    <RightContent title="Tips & tricks">
+    <>
       <Box>
         <Typography size="xs">
           Company was established back in the year 2007 by 3 friends who were fascinated by the web and mobile
@@ -28,7 +27,7 @@ const About = () => {
           reason upwards. The goal is to turn 20 percent of their effort into 80 percent of the impact.
         </Typography>
       </Box>
-    </RightContent>
+    </>
   );
 };
 

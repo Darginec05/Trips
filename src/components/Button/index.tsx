@@ -7,15 +7,16 @@ const Button = ({
   onClick,
   padding,
   justifyContent,
+  isLink,
+  asLinkHref,
   fullWidth = false,
   href = '/',
   type = 'button',
   bgColor = 'primary',
-  as = 'button',
 }: ButtonProps) => {
-  if (as === 'link') {
+  if (isLink) {
     return (
-      <Link href={href}>
+      <Link href={href} as={asLinkHref}>
         <ButtonUI
           as="a"
           onClick={onClick}

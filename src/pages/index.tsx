@@ -1,7 +1,16 @@
-import { TripList } from '../features/trip/TripList';
+import { About } from '../components/About';
+import { Container } from '../components/Container';
+import { TripListView } from '../components/TripListView';
+import { useTrips } from '../features/trip/hooks';
 
-const HomePage = () => {
-  return <TripList />;
+const TripListPage = () => {
+  const { trips, isLoading } = useTrips();
+
+  return (
+    <Container title="Your trips" rightContent={<About />}>
+      <TripListView trips={trips} mode="list" isLoading={isLoading} />
+    </Container>
+  );
 };
 
-export default HomePage;
+export default TripListPage;

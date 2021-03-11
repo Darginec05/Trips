@@ -1,23 +1,25 @@
 import Image from 'next/image';
-import dayjs from 'dayjs';
 import { Box } from '../Box';
 import { Button } from '../Button';
 import { Typography } from '../Typography';
 import { CountryLogo, ItemCard } from './styled';
 import { Trip } from '../../features/trip/types';
+import { getFormatedDate } from '../../features/trip/helpers';
 
 type TripItemProps = {
   trip: Trip;
 };
-
-const getFormatedDate = (date: Date) => dayjs(date).format('MMM D');
 
 const TripCardItem = ({ trip }: TripItemProps) => {
   return (
     <ItemCard mb={20} p={20} fullWidth flexDirection="column">
       <Box alignItems="center">
         <CountryLogo>
-          <Image src={`/countries/${trip.address.country.toUpperCase()}.svg`} layout="fill" alt="trip_country_ac" />
+          <Image
+            src={`/countries/${trip.address.country.toUpperCase()}.svg`}
+            layout="fill"
+            alt={`trip_country_${trip.address.country}`}
+          />
         </CountryLogo>
         <Box ml={10}>
           <Typography weight={600}>{trip.address.country}</Typography>
@@ -50,7 +52,7 @@ const TripCardItem = ({ trip }: TripItemProps) => {
         </Typography>
       </Box>
       <Box fullWidth style={{ marginTop: 'auto' }}>
-        <Button as="link" href="/trip" bgColor="coolgray" fullWidth>
+        <Button isLink href="/trip/[tripId]/edit" asLinkHref={`/trip/${trip.id}/edit`} bgColor="coolgray" fullWidth>
           <Typography color="coolgray">View Trip</Typography>
         </Button>
       </Box>

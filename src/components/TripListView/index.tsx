@@ -1,15 +1,21 @@
 import { Trip } from '../../features/trip/types';
+import { Loader } from '../Loader';
 import { TripCardItem } from '../TripCardItem';
 import { TripListItem } from '../TripListItem';
 
 type Props = {
   mode: 'list' | 'card';
-  trips: Trip[];
+  isLoading: boolean;
+  trips: Trip[] | undefined;
 };
 
-const TripListView = ({ mode, trips }: Props) => {
+const TripListView = ({ mode, trips, isLoading }: Props) => {
+  if (isLoading || !trips) {
+    return <Loader />;
+  }
+
   if (trips.length === 0) {
-    return <div>add trip</div>;
+    return null;
   }
 
   if (mode === 'card') {

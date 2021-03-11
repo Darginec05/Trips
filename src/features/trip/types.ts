@@ -13,3 +13,10 @@ export type Trip = {
   company_name: string;
   address: TripAddress;
 };
+
+export type TripDetailType = {
+  tripId: string;
+  isEditable: boolean;
+};
+
+export type TripFormValues = Omit<Trip, 'id' | 'address'> & TripAddress;

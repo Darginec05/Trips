@@ -4,7 +4,11 @@ import { Typography } from '../Typography';
 export const MainContentUI = styled.main`
   flex-grow: 1;
   height: 100%;
-  padding: 43px 40px;
+  padding: 43px 360px 43px 280px;
+
+  @media only screen and (max-width: 600px) {
+    padding: 20px;
+  }
 `;
 
 export const Title = styled(Typography)`

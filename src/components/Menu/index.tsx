@@ -9,7 +9,7 @@ const Menu = () => {
     <MenuWrap>
       <Logo />
       <Box mt={40}>
-        <Button fullWidth as="link" href="/trip/new">
+        <Button fullWidth isLink href="/trip/new">
           <Typography color="carbon" size="sm" weight={600}>
             New Trip
           </Typography>

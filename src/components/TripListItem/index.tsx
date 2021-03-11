@@ -1,16 +1,14 @@
 import Image from 'next/image';
-import dayjs from 'dayjs';
 import { Box } from '../Box';
 import { Button } from '../Button';
 import { Typography } from '../Typography';
 import { Item, Col, Divider, ButtonWrap, CountryLogo } from './styled';
 import { Trip } from '../../features/trip/types';
+import { getFormatedDate } from '../../features/trip/helpers';
 
 type TripItemProps = {
   trip: Trip;
-}
-
-const getFormatedDate = (date: Date) => dayjs(date).format('MMM D');
+};
 
 const TripListItem = ({ trip }: TripItemProps) => {
   return (
@@ -35,9 +33,7 @@ const TripListItem = ({ trip }: TripItemProps) => {
           </Typography>
         </Box>
         <Box alignItems="center">
-          <Typography size="sm">
-            {trip.company_name}
-          </Typography>
+          <Typography size="sm">{trip.company_name}</Typography>
           <Divider />
           <Typography size="sm" color="coolgray">
             {trip.address.street}
@@ -48,7 +44,13 @@ const TripListItem = ({ trip }: TripItemProps) => {
         <Button padding="18px 16px" bgColor="red">
           <img src="/assets/trip_delete.svg" alt="trip_delete" />
         </Button>
-        <Button padding="18px 16px" bgColor="coolgray" as="link" href={`/trip/${trip.id}/edit`}>
+        <Button
+          isLink
+          href="/trip/[tripId]/edit"
+          asLinkHref={`/trip/${trip.id}/edit`}
+          padding="18px 16px"
+          bgColor="coolgray"
+        >
           <img src="/assets/trip_edit.svg" alt="trip_edit" />
         </Button>
       </ButtonWrap>

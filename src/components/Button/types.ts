@@ -8,8 +8,9 @@ export type ButtonProps = {
   bgColor?: 'coolgray' | 'primary' | 'red';
   justifyContent?: string;
   fullWidth?: boolean;
-  as?: 'link' | 'button';
+  isLink?: boolean;
   href?: string;
+  asLinkHref?: string;
   onClick?: () => void;
 };
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-throw-literal */
 /* eslint-disable prefer-destructuring */
 // const API_URI: string = process.env.API_URI!;
 // const API_TOKEN: string = process.env.API_TOKEN!;
@@ -13,7 +14,7 @@ type Request = {
 
 export async function request({ url, method = 'GET', options = {} }: Request) {
   try {
-    const _call = await fetch(`${API_URI}${url}`, {
+    const response = await fetch(`${API_URI}${url}`, {
       method,
       headers: {
         Authorization: `Bearer ${API_TOKEN}`,
@@ -21,8 +22,10 @@ export async function request({ url, method = 'GET', options = {} }: Request) {
       ...options,
     });
 
-    const response = await _call.json();
-    return response;
+    if (!response.ok) throw { status: response.status, message: response.statusText };
+
+    const data = await response.json();
+    return data;
   } catch (error) {
     return Promise.reject(error);
   }

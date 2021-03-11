@@ -9,7 +9,7 @@ import { Wrap } from './styled';
 const RightContent = () => {
   const router = useRouter();
   const isHomePage = router.pathname === '/';
-  const { trips, isLoading } = useTrips();
+  const { trips, isLoading } = useTrips(isHomePage);
 
   const title = isHomePage ? 'Tips & tricks' : 'Trips';
   const content = isHomePage ? <About /> : <TripListView mode="card" trips={trips} isLoading={isLoading} />;

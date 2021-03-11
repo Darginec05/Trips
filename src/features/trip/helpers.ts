@@ -8,3 +8,5 @@ export const getTripFormValues = (trip: Trip): TripFormValues => {
 
   return { ...tripValues, ...address };
 };
+
+export const isPastTrip = (end_date: Date) => dayjs(end_date).isBefore(dayjs(new Date()));

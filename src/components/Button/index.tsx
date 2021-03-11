@@ -9,6 +9,7 @@ const Button = ({
   justifyContent,
   isLink,
   asLinkHref,
+  disabled,
   fullWidth = false,
   href = '/',
   type = 'button',
@@ -39,6 +40,7 @@ const Button = ({
       justifyContent={justifyContent}
       padding={padding}
       fullWidth={fullWidth}
+      disabled={disabled}
     >
       {children}
     </ButtonUI>

@@ -1,14 +1,15 @@
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import { Fields } from '../../../components/InputField';
+import { Loader } from '../../../components/Loader';
 import { MainContent } from '../../../components/MainContent';
 import { getTripFormValues } from '../../../features/trip/helpers';
 import { useTrip } from '../../../features/trip/hooks';
 import { TripDetailType } from '../../../features/trip/types';
 
 const TripEditPage = ({ tripId }: TripDetailType) => {
-  const { trip } = useTrip(tripId);
+  const { trip, isLoading } = useTrip(tripId);
 
-  if (!trip) return null;
+  if (!trip || isLoading) return <Loader />;
 
   return (
     <MainContent title="Edit trip">

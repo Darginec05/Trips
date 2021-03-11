@@ -12,6 +12,7 @@ export type ButtonProps = {
   href?: string;
   asLinkHref?: string;
   onClick?: () => void;
+  disabled?: boolean;
 };
 
 export type ButtonStyleProps = Pick<ButtonProps, 'padding' | 'justifyContent' | 'fullWidth' | 'bgColor'>;

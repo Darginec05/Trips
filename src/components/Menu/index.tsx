@@ -9,10 +9,11 @@ const Menu = () => {
     <MenuWrap>
       <Logo />
       <Box mt={40}>
-        <Button fullWidth isLink href="/trip/new">
+        <Button fullWidth isLink href="/trip/new" justifyContent="space-between">
           <Typography color="carbon" size="sm" weight={600}>
             New Trip
           </Typography>
+          <img src="/assets/plus.svg" alt="add_trip" />
         </Button>
       </Box>
     </MenuWrap>

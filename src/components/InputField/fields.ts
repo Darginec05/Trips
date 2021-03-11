@@ -45,7 +45,7 @@ export const defaultInputFields: FieldItems[] = [
   },
   {
     label: 'Street number',
-    name: 'street_number',
+    name: 'street_num',
     placeholder: '',
     hasSpace: false,
     borderRadius: '0',
@@ -72,3 +72,76 @@ export const defaultInputFields: FieldItems[] = [
     borderRadius: '0',
   },
 ];
+
+// export const defaultInputFields: any = {
+//   country: {
+//     label: 'Where do you want to go',
+//     name: 'country',
+//     placeholder: '',
+//     hasSpace: false,
+//     borderRadius: '0',
+//   },
+//   start_date: {
+//     label: 'Start date',
+//     name: 'start_date',
+//     placeholder: '',
+//     hasSpace: true,
+//     borderRadius: '0',
+//   },
+//   end_date: {
+//     label: 'End date',
+//     name: 'end_date',
+//     placeholder: '',
+//     hasSpace: false,
+//     borderRadius: '0',
+//   },
+//   company_name: {
+//     label: 'Company name',
+//     name: 'company_name',
+//     placeholder: '',
+//     hasSpace: true,
+//     borderRadius: '0',
+//   },
+//   city: {
+//     label: 'City',
+//     name: 'city',
+//     placeholder: '',
+//     hasSpace: false,
+//     borderRadius: '0',
+//   },
+//   street: {
+//     label: 'Street',
+//     name: 'street',
+//     placeholder: '',
+//     hasSpace: false,
+//     borderRadius: '0',
+//   },
+//   street_number: {
+//     label: 'Street number',
+//     name: 'street_number',
+//     placeholder: '',
+//     hasSpace: false,
+//     borderRadius: '0',
+//   },
+//   zip: {
+//     label: 'Zip code',
+//     name: 'zip',
+//     placeholder: '',
+//     hasSpace: false,
+//     borderRadius: '0',
+//   },
+//   covid: {
+//     label: 'Have you been recently tested for COVID-19?',
+//     name: 'covid',
+//     placeholder: '',
+//     hasSpace: true,
+//     borderRadius: '0',
+//   },
+//   covid_test_date: {
+//     label: 'Date of receiving test results',
+//     name: 'covid_test_date',
+//     placeholder: '',
+//     hasSpace: false,
+//     borderRadius: '0',
+//   },
+// };

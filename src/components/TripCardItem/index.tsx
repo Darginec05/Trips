@@ -4,13 +4,15 @@ import { Button } from '../Button';
 import { Typography } from '../Typography';
 import { CountryLogo, ItemCard } from './styled';
 import { Trip } from '../../features/trip/types';
-import { getFormatedDate } from '../../features/trip/helpers';
+import { getFormatedDate, isPastTrip } from '../../features/trip/helpers';
 
 type TripItemProps = {
   trip: Trip;
 };
 
 const TripCardItem = ({ trip }: TripItemProps) => {
+  const isPast = isPastTrip(trip.end_date);
+
   return (
     <ItemCard mb={20} p={20} fullWidth flexDirection="column">
       <Box alignItems="center">
@@ -52,8 +54,16 @@ const TripCardItem = ({ trip }: TripItemProps) => {
         </Typography>
       </Box>
       <Box fullWidth style={{ marginTop: 'auto' }}>
-        <Button isLink href="/trip/[tripId]/edit" asLinkHref={`/trip/${trip.id}/edit`} bgColor="coolgray" fullWidth>
-          <Typography color="coolgray">View Trip</Typography>
+        <Button
+          isLink
+          href={`/trip/[tripId]/${isPast ? 'detail' : 'edit'}`}
+          asLinkHref={`/trip/${trip.id}/${isPast ? 'detail' : 'edit'}`}
+          bgColor="coolgray"
+          justifyContent="space-between"
+          fullWidth
+        >
+          <Typography color="coolgray">{isPast ? 'View trip' : 'Edit trip'}</Typography>
+          <img src={`/assets/${isPast ? 'arrow_right' : 'trip_edit'}.svg`} alt="trip_edit" />
         </Button>
       </Box>
     </ItemCard>

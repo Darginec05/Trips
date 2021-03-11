@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import { Button } from '../Button';
 import { Box } from '../Box';
 
 export const FieldWrap = styled(Box)`
   background: #f9f9fa;
   border-radius: ${(props) => props.borderRadius};
-  width: 500px;
+  width: 100%;
+  max-width: 600px;
 `;
 
 export const Input = styled.input`
@@ -31,6 +31,6 @@ export const Form = styled.form`
   height: 100%;
 `;
 
-export const SubmitButton = styled(Button)`
+export const SubmitButton = styled.div`
   width: 200px;
 `;

@@ -10,6 +10,18 @@ export const Wrap = styled.aside`
   right: 0;
   top: 0;
   overflow-y: auto;
+  animation: fromRight ease-in 300ms;
+
+  @keyframes fromRight {
+    0% {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
 
   @media only screen and (max-width: 600px) {
     display: none;

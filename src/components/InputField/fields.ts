@@ -1,12 +1,15 @@
-import { FieldItems } from './types';
+import { CountriesSelect } from '../CountriesSelect';
+import { Input } from '../Input';
+import { FieldProps } from './types';
 
-export const defaultInputFields: FieldItems[] = [
+export const defaultInputFields: FieldProps[] = [
   {
     label: 'Where do you want to go',
     name: 'country',
     placeholder: '',
     hasSpace: false,
     borderRadius: '0',
+    component: CountriesSelect,
   },
   {
     label: 'Start date',
@@ -14,6 +17,7 @@ export const defaultInputFields: FieldItems[] = [
     placeholder: '',
     hasSpace: true,
     borderRadius: '0',
+    component: Input,
   },
   {
     label: 'End date',
@@ -21,6 +25,7 @@ export const defaultInputFields: FieldItems[] = [
     placeholder: '',
     hasSpace: false,
     borderRadius: '0',
+    component: Input,
   },
   {
     label: 'Company name',
@@ -28,6 +33,7 @@ export const defaultInputFields: FieldItems[] = [
     placeholder: '',
     hasSpace: true,
     borderRadius: '0',
+    component: Input,
   },
   {
     label: 'City',
@@ -35,6 +41,7 @@ export const defaultInputFields: FieldItems[] = [
     placeholder: '',
     hasSpace: false,
     borderRadius: '0',
+    component: Input,
   },
   {
     label: 'Street',
@@ -42,6 +49,7 @@ export const defaultInputFields: FieldItems[] = [
     placeholder: '',
     hasSpace: false,
     borderRadius: '0',
+    component: Input,
   },
   {
     label: 'Street number',
@@ -49,6 +57,7 @@ export const defaultInputFields: FieldItems[] = [
     placeholder: '',
     hasSpace: false,
     borderRadius: '0',
+    component: Input,
   },
   {
     label: 'Zip code',
@@ -56,6 +65,7 @@ export const defaultInputFields: FieldItems[] = [
     placeholder: '',
     hasSpace: false,
     borderRadius: '0',
+    component: Input,
   },
   {
     label: 'Have you been recently tested for COVID-19?',
@@ -63,6 +73,7 @@ export const defaultInputFields: FieldItems[] = [
     placeholder: '',
     hasSpace: true,
     borderRadius: '0',
+    component: Input,
   },
   {
     label: 'Date of receiving test results',
@@ -70,6 +81,7 @@ export const defaultInputFields: FieldItems[] = [
     placeholder: '',
     hasSpace: false,
     borderRadius: '0',
+    component: Input,
   },
 ];
 

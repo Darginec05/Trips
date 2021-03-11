@@ -13,4 +13,5 @@ export const ButtonUI = styled.button<ButtonStyleProps>`
   cursor: pointer;
   width: ${(props) => (props.fullWidth ? '100%' : 'auto')};
   background-color: ${(props) => props.theme.button.bg[props.bgColor!]};
+  height: 100%;
 `;

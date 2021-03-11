@@ -1,46 +1,48 @@
 import { useRouter } from 'next/router';
-import { forwardRef, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
 import { useAddTripMutation } from '../../features/trip/hooks';
 import { TripFormData, TripFormValues } from '../../features/trip/types';
 import { Box } from '../Box';
 import { Button } from '../Button';
 import { Typography } from '../Typography';
 import { defaultInputFields } from './fields';
-import { FieldWrap, Input, Form, SubmitButton } from './styled';
-import { FieldItems } from './types';
+import { FieldWrap, Form, SubmitButton } from './styled';
+import { FormFieldsProps, FieldProps } from './types';
+import { CountrySelect } from '../../forms-fields/Select';
 
-type FieldProps = {
-  value?: string;
-  hasSpace: boolean;
-  isEditable: boolean;
-  label: string;
-  name: string;
-  borderRadius: string;
-  placeholder: string;
-};
-
-const InputFieldRender = forwardRef(
-  ({ value, hasSpace, isEditable, label, name, borderRadius, placeholder }: FieldProps, ref) => {
-    return (
-      <FieldWrap p={20} mt={hasSpace ? 23 : 0} fullWidth flexDirection="column" borderRadius={borderRadius}>
-        <Typography color="carbon" size="sm">
-          {label}
-        </Typography>
-        <Box mt={20} fullWidth>
-          <Input disabled={!isEditable} name={name} value={value} placeholder={placeholder} ref={ref} />
-        </Box>
-      </FieldWrap>
-    );
-  },
-);
-
-type FieldsProps = {
-  buttonText: string;
-  isEditable: boolean;
-  fields?: FieldItems[];
-  defaultValues?: any;
-  schema?: any;
+// const InputFieldRender = forwardRef<HTMLInputElement, FieldProps>(
+//   (props, ref) => {
+//     const { hasSpace, label, borderRadius, render, ...inputProps } = props;
+//     return (
+//       <FieldWrap p={20} mt={hasSpace ? 23 : 0} fullWidth flexDirection="column" borderRadius={borderRadius}>
+//         <Typography color="carbon" size="sm">
+//           {label}
+//         </Typography>
+//         <Box mt={20} fullWidth>
+//           {/* {render ? render({ ...inputProps, ref }) : undefined} */}
+//           {/* <Input {...inputProps} ref={ref} /> */}
+//         </Box>
+//       </FieldWrap>
+//     );
+//   },
+// );
+const InputFieldRender = (props: FieldProps & { control: any }) => {
+  const { hasSpace, label, borderRadius, component, control, ...inputProps } = props;
+  return (
+    <FieldWrap p={20} mt={hasSpace ? 23 : 0} fullWidth flexDirection="column" borderRadius={borderRadius}>
+      <Typography color="carbon" size="sm">
+        {label}
+      </Typography>
+      <Box mt={20} fullWidth>
+        <Controller
+          control={control}
+          as={component}
+          name={inputProps.name}
+        />
+      </Box>
+    </FieldWrap>
+  );
 };
 
 const Fields = ({
@@ -48,13 +50,12 @@ const Fields = ({
   defaultValues = {},
   isEditable = true,
   schema = { fields: defaultInputFields },
-}: FieldsProps) => {
+}: FormFieldsProps) => {
   const router = useRouter();
   const [isLoading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState(null);
   const { addTrip } = useAddTripMutation();
 
-  const { register, handleSubmit } = useForm<TripFormValues>({
+  const { handleSubmit, control } = useForm<TripFormValues>({
     defaultValues,
   });
 
@@ -65,7 +66,6 @@ const Fields = ({
       const tripBody: TripFormData = {
         ...tripValues,
         covid: false,
-        covid_test_date: '2021-03-11',
         address: {
           zip,
           street,
@@ -73,7 +73,7 @@ const Fields = ({
           country,
         },
       };
-      const data = await addTrip(tripBody);
+      await addTrip(tripBody);
       setLoading(false);
       router.push('/');
     } catch (_error) {
@@ -84,50 +84,10 @@ const Fields = ({
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <Box flexDirection="column" alignItems="center" fullWidth pb={105}>
-        {schema.fields.map((field) => {
-          return <InputFieldRender key={field.name} {...field} ref={register} isEditable={isEditable} />;
+        {schema.fields.map((field: any) => {
+          return <InputFieldRender key={field.name} {...field} control={control} disabled={!isEditable} />;
         })}
       </Box>
-      {/* <InputFieldRender
-        {...defaultInputFields.country}
-        isEditable
-      />
-      <InputFieldRender
-        {...defaultInputFields.start_date}
-        isEditable
-      />
-      <InputFieldRender
-        {...defaultInputFields.end_date}
-        isEditable
-      />
-      <InputFieldRender
-        {...defaultInputFields.company_name}
-        isEditable
-      />
-      <InputFieldRender
-        {...defaultInputFields.city}
-        isEditable
-      />
-      <InputFieldRender
-        {...defaultInputFields.street}
-        isEditable
-      />
-      <InputFieldRender
-        {...defaultInputFields.street_number}
-        isEditable
-      />
-      <InputFieldRender
-        {...defaultInputFields.zip}
-        isEditable
-      />
-      <InputFieldRender
-        {...defaultInputFields.covid}
-        isEditable
-      />
-      <InputFieldRender
-        {...defaultInputFields.covid_test_date}
-        isEditable
-      /> */}
       {isEditable && (
         <Box fullWidth justifyContent="center">
           <SubmitButton>

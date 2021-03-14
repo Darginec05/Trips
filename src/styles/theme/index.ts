@@ -1,4 +1,4 @@
-type TypographyColors = {
+export type TypographyColors = {
   primary: string;
   coolgray: string;
   carbon: string;
@@ -6,29 +6,29 @@ type TypographyColors = {
   error: string;
 };
 
-type Sizes = {
+export type Sizes = {
   xs: number;
   sm: number;
   md: number;
   lg: number;
 };
 
-type TypographySizes = Sizes
-type TypographyLineHeights = Sizes
+export type TypographySizes = Sizes
+export type TypographyLineHeights = Sizes
 
-type TypographyTheme = {
+export type TypographyTheme = {
   colors: TypographyColors;
   sizes: TypographySizes;
   lineHeight: TypographyLineHeights;
 }
 
-type ButtonBgColors = {
+export type ButtonBgColors = {
   primary: string;
   coolgray: string;
   red: string;
 };
 
-type ButtonTheme = {
+export type ButtonTheme = {
   bg: ButtonBgColors;
   borderRadius: string;
   padding: string;

@@ -1,11 +1,12 @@
 import { ReactNode } from 'react';
+import { ButtonBgColors } from '../../styles/theme';
 
 export type ButtonProps = {
   type?: 'button' | 'submit' | 'reset';
   children: any;
   icon?: null | ReactNode;
   padding?: number | string;
-  bgColor?: 'coolgray' | 'primary' | 'red';
+  bgColor?: keyof ButtonBgColors;
   justifyContent?: string;
   fullWidth?: boolean;
   isLink?: boolean;

@@ -7,6 +7,7 @@ export const StyledInput = styled.input<InputStyleProps>`
   padding: 16px 20px;
   border: ${(props) => (props.$hasError ? '1px solid red' : '1px solid #f1f1f2')};
   border-radius: 10px;
+  font-family: 'Open Sans', sans-serif;
   background: #ffffff;
 
   &:disabled {

@@ -1,7 +1,9 @@
-import { Typography } from '../../components/Typography';
+import { Typography } from '../../UI/Typography';
 import { CheckboxInput, CheckboxLabel } from './styled';
 
-const CheckboxField = ({ name, id, register, label, checked, value, onChange }: any) => {
+const CheckboxField = ({
+  name, id, register, label, checked, value, onChange, disabled,
+}: any) => {
   return (
     <CheckboxLabel htmlFor={id}>
       <CheckboxInput
@@ -12,6 +14,7 @@ const CheckboxField = ({ name, id, register, label, checked, value, onChange }: 
         value={value}
         onChange={onChange}
         ref={register}
+        disabled={disabled}
       />
       <Typography>{label}</Typography>
     </CheckboxLabel>

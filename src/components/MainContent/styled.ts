@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Typography } from '../Typography';
+import { Typography } from '../../UI/Typography';
 
 export const MainContentUI = styled.main`
   flex-grow: 1;

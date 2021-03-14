@@ -1,6 +1,6 @@
-import { Box } from '../Box';
-import { Button } from '../Button';
-import { Typography } from '../Typography';
+import { Box } from '../../UI/Box';
+import { Button } from '../../UI/Button';
+import { Typography } from '../../UI/Typography';
 import { Item, Col, Divider, ButtonWrap } from './styled';
 import { Trip } from '../../features/trip/types';
 import { getFormatedDate, isPastTrip } from '../../features/trip/helpers';

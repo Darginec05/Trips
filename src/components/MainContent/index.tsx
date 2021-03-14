@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { Box } from '../Box';
+import { Box } from '../../UI/Box';
 import { MainContentUI, Title } from './styled';
 
 type Props = {

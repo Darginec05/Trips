@@ -10,4 +10,5 @@ export const TypographyUI = styled.span<TypographyStyleProps>`
   word-break: break-word;
   text-decoration: none;
   font-weight: ${(props) => props.weight};
+  font-family: 'Open Sans', sans-serif;
 `;

@@ -1,7 +1,7 @@
 import { UseFormMethods } from 'react-hook-form';
-import { Box } from '../../components/Box';
-import { Button } from '../../components/Button';
-import { Typography } from '../../components/Typography';
+import { Box } from '../../UI/Box';
+import { Button } from '../../UI/Button';
+import { Typography } from '../../UI/Typography';
 import { FormFieldItem } from '../FormField';
 import { FormWrapper, SubmitButton } from './styled';
 
@@ -17,21 +17,17 @@ type FormProps = Omit<UseFormMethods, 'handleSubmit'> & {
   schema: FormSchema;
 };
 
-const Form = ({
-  onSubmit, isEditable, schema, disabled, register, watch, control, errors,
-}: FormProps) => {
+const Form = ({ onSubmit, isEditable, schema, disabled, ...methods }: FormProps) => {
   return (
     <FormWrapper onSubmit={onSubmit}>
       <Box flexDirection="column" alignItems="center" fullWidth pb={105}>
         {schema.fields.map((fieldProps: any) => {
           return (
             <FormFieldItem
-              control={control}
-              register={register}
-              watch={watch}
               key={fieldProps.name}
               disabled={!isEditable}
-              error={errors[fieldProps.name]}
+              error={methods.errors[fieldProps.name]}
+              {...methods}
               {...fieldProps}
             />
           );

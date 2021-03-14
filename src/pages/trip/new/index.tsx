@@ -4,7 +4,7 @@ import { MainContent } from '../../../components/MainContent';
 const TripCreatePage = () => {
   return (
     <MainContent title="New trip">
-      <TripFormFields isEditable buttonText="Save" />
+      <TripFormFields isEditable />
     </MainContent>
   );
 };

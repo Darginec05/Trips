@@ -15,5 +15,5 @@ export type FieldProps = FieldInputProps & {
 export type FormFieldsProps = {
   isEditable: boolean;
   defaultValues?: any;
-  fields: any[];
+  fields?: any[];
 };

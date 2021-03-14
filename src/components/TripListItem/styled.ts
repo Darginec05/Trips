@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Box as BoxUI } from '../Box';
+import { Box as BoxUI } from '../../UI/Box';
 
 export const Item = styled(BoxUI)`
   background: #f9f9fa;

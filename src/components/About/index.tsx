@@ -1,5 +1,5 @@
-import { Box } from '../Box';
-import { Typography } from '../Typography';
+import { Box } from '../../UI/Box';
+import { Typography } from '../../UI/Typography';
 
 const About = () => {
   return (

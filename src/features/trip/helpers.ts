@@ -1,9 +1,9 @@
 import dayjs from 'dayjs';
-import { Trip, TripFormValues } from './types';
+import { Trip } from './types';
 
 export const getFormatedDate = (date: Date, format = 'MMM D') => dayjs(date).format(format);
 
-export const getTripFormValues = (trip: Trip): TripFormValues => {
+export const getTripFormValues = (trip: Trip): any => {
   const { address, id, ...tripValues } = trip;
 
   return { ...tripValues, ...address };

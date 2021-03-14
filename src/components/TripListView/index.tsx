@@ -1,5 +1,5 @@
 import { Trip } from '../../features/trip/types';
-import { Loader } from '../Loader';
+import { Loader } from '../../UI/Loader';
 import { TripCardItem } from '../TripCardItem';
 import { TripListItem } from '../TripListItem';
 

@@ -93,3 +93,32 @@ export const useDeleteTripMutation = (tripId: string) => {
 
   return { deleteTrip: mutateAsync, isLoading };
 };
+
+/**
+ *
+ * @returns
+ */
+export const useEditTripMutation = (tripId: string): {
+  addTrip: UseMutateAsyncFunction<AddTripResponse, unknown, TripFormData>;
+  isLoading: boolean;
+} => {
+  const queryClient = useQueryClient();
+
+  const addTrip = async (body: TripFormData) => {
+    const _trip = await request<AddTripResponse>({ url: `/trip/${tripId}`, method: 'PUT', body });
+    return _trip;
+  };
+
+  const onSuccess = async (response: AddTripResponse, trip: TripFormData) => {
+    const prevTrips = queryClient.getQueryData<Trip[]>('Trips');
+    if (prevTrips) {
+      queryClient.setQueryData<Trip[]>('Trips', [...prevTrips, { ...trip, id: response.id }]);
+    }
+  };
+
+  const { mutateAsync, isLoading } = useMutation<AddTripResponse, unknown, TripFormData>(addTrip, {
+    onSuccess,
+  });
+
+  return { addTrip: mutateAsync, isLoading };
+};

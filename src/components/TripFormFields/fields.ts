@@ -11,7 +11,6 @@ export const TRIP_FORM_FIELDS: any[] = [
     hasSpace: false,
     borderRadius: '0',
     component: CountriesSelect,
-    validation: { required: 'Please fill field' },
   },
   {
     label: 'Start date',
@@ -20,7 +19,6 @@ export const TRIP_FORM_FIELDS: any[] = [
     hasSpace: true,
     borderRadius: '0',
     component: DatePickerField,
-    validation: { required: 'Please fill field' },
   },
   {
     label: 'End date',
@@ -29,7 +27,6 @@ export const TRIP_FORM_FIELDS: any[] = [
     hasSpace: false,
     borderRadius: '0',
     component: DatePickerField,
-    validation: { required: 'Please fill field' },
   },
   {
     label: 'Company name',
@@ -38,7 +35,6 @@ export const TRIP_FORM_FIELDS: any[] = [
     hasSpace: true,
     borderRadius: '0',
     component: TextField,
-    validation: { required: 'Please fill field' },
   },
   {
     label: 'City',
@@ -47,7 +43,6 @@ export const TRIP_FORM_FIELDS: any[] = [
     hasSpace: false,
     borderRadius: '0',
     component: TextField,
-    validation: { required: 'Please fill field' },
   },
   {
     label: 'Street',
@@ -56,7 +51,6 @@ export const TRIP_FORM_FIELDS: any[] = [
     hasSpace: false,
     borderRadius: '0',
     component: TextField,
-    validation: { required: 'Please fill field' },
   },
   {
     label: 'Street number',
@@ -73,7 +67,6 @@ export const TRIP_FORM_FIELDS: any[] = [
     hasSpace: false,
     borderRadius: '0',
     component: TextField,
-    validation: { required: 'Please fill field' },
   },
   {
     label: 'Have you been recently tested for COVID-19?',
@@ -82,6 +75,5 @@ export const TRIP_FORM_FIELDS: any[] = [
     hasSpace: true,
     borderRadius: '0',
     component: CovidCheckbox,
-    validation: { required: 'Please fill field' },
   },
 ];

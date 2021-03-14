@@ -1,6 +1,6 @@
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import { TripFormFields } from '../../../components/TripFormFields';
-import { Loader } from '../../../components/Loader';
+import { Loader } from '../../../UI/Loader';
 import { MainContent } from '../../../components/MainContent';
 import { getTripFormValues } from '../../../features/trip/helpers';
 import { useTrip } from '../../../features/trip/hooks';
@@ -13,7 +13,7 @@ const TripEditPage = ({ tripId }: TripDetailType) => {
 
   return (
     <MainContent title="Edit trip">
-      <TripFormFields isEditable buttonText="Save" defaultValues={getTripFormValues(trip)} />
+      <TripFormFields isEditable defaultValues={getTripFormValues(trip)} />
     </MainContent>
   );
 };

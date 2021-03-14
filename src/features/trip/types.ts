@@ -12,17 +12,18 @@ export type Trip = {
   end_date: Date;
   company_name: string;
   address: TripAddress;
-  covid: boolean,
-  covid_test_date: Date;
+  covid: boolean;
+  covid_test_date?: Date;
 };
 
-export type TripFormData = Omit<Trip, 'id'>
+export type TripFormData = Omit<Trip, 'id'>;
 
 export type TripDetailType = {
   tripId: string;
   isEditable: boolean;
 };
 
-export type TripFormValues = Omit<Trip, 'id' | 'address'> & TripAddress;
+export type TripFormValues = Omit<Trip, 'id' | 'address' | 'covid' | 'country'> &
+  TripAddress & { covid: string; country: { label: string; value: string } };
 
 export type AddTripResponse = Pick<Trip, 'id'>;

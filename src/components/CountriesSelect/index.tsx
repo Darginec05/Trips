@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { components } from 'react-select';
+import { COUNTRY_MAP } from '../../constants/countries';
 import { SelectField } from '../../form-fields/Select';
 import { request } from '../../utils/request';
-import { Box } from '../Box';
+import { Box } from '../../UI/Box';
 import { CountryLogo } from '../CountryLogo';
-import { Typography } from '../Typography';
+import { Typography } from '../../UI/Typography';
 import { OptionItem } from './styled';
 
 type CountryResponse = {
@@ -42,13 +43,20 @@ const Option = (props: any) => {
   );
 };
 
-const CountriesSelect = ({ control, disabled, name, defaultValue }: any) => {
+const CountriesSelect = ({ control, disabled, name, setValue, getValues, onFocus }: any) => {
   const [countries, setCountries] = useState<CountryResponse[]>([]);
 
   const getCountry = async () => {
     const _data = await request<CountryResponse[]>({ url: '/country' });
     setCountries(_data);
   };
+
+  useEffect(() => {
+    const country = getValues(name);
+    if (country) {
+      setValue(name, { label: country, value: COUNTRY_MAP[country]?.value });
+    }
+  }, []);
 
   useEffect(() => {
     if (countries.length === 0) {
@@ -64,8 +72,8 @@ const CountriesSelect = ({ control, disabled, name, defaultValue }: any) => {
       control={control}
       disabled={disabled}
       name={name}
-      defaultValue={defaultValue}
       isMulti={false}
+      onFocus={onFocus}
     />
   );
 };

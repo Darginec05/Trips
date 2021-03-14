@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router';
 import { useTrips } from '../../features/trip/hooks';
 import { About } from '../About';
-import { Box } from '../Box';
+import { Box } from '../../UI/Box';
 import { TripListView } from '../TripListView';
-import { Typography } from '../Typography';
+import { Typography } from '../../UI/Typography';
 import { Wrap } from './styled';
 
 const RightContent = () => {

@@ -1,4 +1,15 @@
 import styled from 'styled-components';
+import { LoaderProps } from './types';
+
+export const LoaderLayout = styled.div<LoaderProps>`
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  background-color: ${(props) => (props.transparent ? 'transparent' : 'rgba(0,0,0,.2)')};
+  left: 0;
+  top: 0;
+  z-index: 2;
+`;
 
 export const LoaderContainer = styled.div`
   width: auto;

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Box } from '../Box';
+import { Box } from '../../components/Box';
 
 export const FieldWrap = styled(Box)`
   background: #f9f9fa;

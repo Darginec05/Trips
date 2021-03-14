@@ -1,12 +1,52 @@
-export const theme = {
-  main: 'mediumseagreen',
-  black: '#000',
+type TypographyColors = {
+  primary: string;
+  coolgray: string;
+  carbon: string;
+  gray: string;
+  error: string;
+};
+
+type Sizes = {
+  xs: number;
+  sm: number;
+  md: number;
+  lg: number;
+};
+
+type TypographySizes = Sizes
+type TypographyLineHeights = Sizes
+
+type TypographyTheme = {
+  colors: TypographyColors;
+  sizes: TypographySizes;
+  lineHeight: TypographyLineHeights;
+}
+
+type ButtonBgColors = {
+  primary: string;
+  coolgray: string;
+  red: string;
+};
+
+type ButtonTheme = {
+  bg: ButtonBgColors;
+  borderRadius: string;
+  padding: string;
+}
+
+export type ThemeProps = {
+  typography: TypographyTheme;
+  button: ButtonTheme;
+}
+
+export const theme: ThemeProps = {
   typography: {
     colors: {
       primary: '#000',
       coolgray: '#97999B',
       carbon: '#1C252B',
       gray: '#76787B',
+      error: 'red',
     },
     sizes: {
       xs: 12,

@@ -5,57 +5,57 @@ type CountryItem = {
 };
 
 export const COUNTRY_MAP: { [x: string]: CountryItem } = {
-  aw: {
+  Netherlands: {
     value: 'aw',
     label: 'Netherlands',
     src: '/countries/AW.svg',
   },
-  gr: {
+  Greece: {
     value: 'gr',
     label: 'Greece',
     src: '/countries/GR.svg',
   },
-  fr: {
+  France: {
     value: 'fr',
     label: 'France',
     src: '/countries/FR.svg',
   },
-  pt: {
+  Portugal: {
     value: 'pt',
     label: 'Portugal',
     src: '/countries/PT.svg',
   },
-  es: {
+  Spain: {
     value: 'es',
     label: 'Spain',
     src: '/countries/ES.svg',
   },
-  it: {
+  Italy: {
     value: 'it',
     label: 'Italy',
     src: '/countries/IT.svg',
   },
-  sk: {
+  Slovakia: {
     value: 'sk',
     label: 'Slovakia',
     src: '/countries/SK.svg',
   },
-  se: {
+  Sweden: {
     value: 'se',
     label: 'Sweden',
     src: '/countries/SE.svg',
   },
-  cn: {
+  China: {
     value: 'cn',
     label: 'China',
     src: '/countries/CN.svg',
   },
-  at: {
+  Austria: {
     value: 'at',
     label: 'Austria',
     src: '/countries/AT.svg',
   },
-  uk: {
+  'United Kingdom': {
     value: 'uk',
     label: 'United Kingdom',
     src: '/countries/GB.svg',

@@ -1,56 +1,48 @@
 import { useEffect, useState } from 'react';
-import Select, { StylesConfig } from 'react-select';
-import { COUNTRY_MAP } from '../../constants/countries';
+import { components } from 'react-select';
+import { SelectField } from '../../form-fields/Select';
 import { request } from '../../utils/request';
+import { Box } from '../Box';
+import { CountryLogo } from '../CountryLogo';
 import { Typography } from '../Typography';
-import { CountryIcon, OptionItem } from './styled';
+import { OptionItem } from './styled';
 
 type CountryResponse = {
   value: string;
   label: string;
 };
 
-type IsMulti = false;
-
-const styles: StylesConfig<CountryResponse, IsMulti> = {
-  container: (provided: any) => ({
-    ...provided,
-    width: '100%',
-  }),
-  control: (provided: any, state) => ({
-    ...provided,
-    height: 48,
-    borderRadius: state.menuIsOpen ? '10px 10px 0 0' : '10px',
-  }),
-  menu: (provided) => ({
-    ...provided,
-    margin: 0,
-    borderRadius: '0 0 10px 10px',
-  }),
-  menuList: (provided) => ({
-    ...provided,
-    padding: 0,
-  }),
+const Control = ({ children, ...props }: any) => {
+  // eslint-disable-next-line react/destructuring-assignment
+  const [option] = props.getValue();
+  return (
+    <components.Control {...props}>
+      <Box pl={14} pr={14} fullWidth alignItems="center">
+        <CountryLogo country={option?.label} width={23} height={23} />
+        {' '}
+        <Typography weight={500} size="sm" style={{ marginLeft: 4, display: 'flex', width: '100%' }}>
+          {children}
+        </Typography>
+      </Box>
+    </components.Control>
+  );
 };
 
-const Option = ({ data }: any) => {
-  const { label, value } = data;
-
-  const src = COUNTRY_MAP[value].src || '/countries/country_fallback.svg';
+const Option = (props: any) => {
+  const { innerProps, data, innerRef } = props;
+  const { label } = data;
 
   return (
-    <OptionItem p={14} alignItems="center">
-      <CountryIcon>
-        <img src={src} alt={label} width={23} height={23} />
-      </CountryIcon>
-      <Typography weight={300} size="sm">
+    <OptionItem p={14} alignItems="center" ref={innerRef} {...innerProps}>
+      <CountryLogo country={label} width={23} height={23} />
+      <Typography weight={300} size="sm" style={{ marginLeft: 12 }}>
         {label}
       </Typography>
     </OptionItem>
   );
 };
 
-const CountriesSelect = () => {
+const CountriesSelect = ({ control, disabled, name, defaultValue }: any) => {
   const [countries, setCountries] = useState<CountryResponse[]>([]);
 
   const getCountry = async () => {
@@ -59,16 +51,21 @@ const CountriesSelect = () => {
   };
 
   useEffect(() => {
-    getCountry();
-  }, []);
+    if (countries.length === 0) {
+      getCountry();
+    }
+  }, [countries.length]);
 
   return (
-    <Select
-      placeholder="Select country"
-      styles={styles}
+    <SelectField
+      components={{ Option, Control }}
       options={countries}
-      components={{ Option }}
-      // menuIsOpen
+      instanceId="country_select"
+      control={control}
+      disabled={disabled}
+      name={name}
+      defaultValue={defaultValue}
+      isMulti={false}
     />
   );
 };

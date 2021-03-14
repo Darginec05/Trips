@@ -33,14 +33,3 @@ export const ButtonWrap = styled(BoxUI)`
     }
   }
 `;
-
-export const CountryLogo = styled.div`
-  width: 40px;
-  height: 40px;
-  position: relative;
-
-  img {
-    border-radius: 100px;
-    object-fit: cover;
-  }
-`;

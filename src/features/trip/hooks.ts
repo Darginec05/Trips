@@ -1,4 +1,4 @@
-import { useMutation, useQuery, useQueryClient } from 'react-query';
+import { UseMutateAsyncFunction, useMutation, useQuery, useQueryClient } from 'react-query';
 import { request } from '../../utils/request';
 import { AddTripResponse, Trip, TripFormData } from './types';
 
@@ -42,7 +42,10 @@ export const useTrip = (tripId: string): { trip: Trip | undefined; isLoading: bo
  *
  * @returns
  */
-export const useAddTripMutation = () => {
+export const useAddTripMutation = (): {
+  addTrip: UseMutateAsyncFunction<AddTripResponse, unknown, TripFormData>;
+  isLoading: boolean;
+} => {
   const queryClient = useQueryClient();
 
   const addTrip = async (body: TripFormData) => {
@@ -77,7 +80,10 @@ export const useDeleteTripMutation = (tripId: string) => {
   const onSuccess = async () => {
     const prevTrips = queryClient.getQueryData<Trip[]>('Trips');
     if (prevTrips) {
-      queryClient.setQueryData<Trip[]>('Trips', prevTrips.filter((trip) => trip.id !== tripId));
+      queryClient.setQueryData<Trip[]>(
+        'Trips',
+        prevTrips.filter((trip) => trip.id !== tripId),
+      );
     }
   };
 

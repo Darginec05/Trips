@@ -1,11 +1,11 @@
-import Image from 'next/image';
 import { Box } from '../Box';
 import { Button } from '../Button';
 import { Typography } from '../Typography';
-import { Item, Col, Divider, ButtonWrap, CountryLogo } from './styled';
+import { Item, Col, Divider, ButtonWrap } from './styled';
 import { Trip } from '../../features/trip/types';
 import { getFormatedDate, isPastTrip } from '../../features/trip/helpers';
 import { useDeleteTripMutation } from '../../features/trip/hooks';
+import { CountryLogo } from '../CountryLogo';
 
 type TripItemProps = {
   trip: Trip;
@@ -18,9 +18,7 @@ const TripListItem = ({ trip }: TripItemProps) => {
   return (
     <Item mb={20} p={20} fullWidth alignItems="center" flexDirection="row">
       <Box>
-        <CountryLogo>
-          <Image src={`/countries/${trip.address.country.toUpperCase()}.svg`} layout="fill" alt="trip_country_ac" />
-        </CountryLogo>
+        <CountryLogo width={40} height={40} country={trip.address.country} />
       </Box>
       <Col ml={20} flexDirection="column" justifyContent="space-between">
         <Box alignItems="center">

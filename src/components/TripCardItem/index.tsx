@@ -1,10 +1,10 @@
-import Image from 'next/image';
 import { Box } from '../Box';
 import { Button } from '../Button';
 import { Typography } from '../Typography';
-import { CountryLogo, ItemCard } from './styled';
+import { ItemCard } from './styled';
 import { Trip } from '../../features/trip/types';
 import { getFormatedDate, isPastTrip } from '../../features/trip/helpers';
+import { CountryLogo } from '../CountryLogo';
 
 type TripItemProps = {
   trip: Trip;
@@ -16,13 +16,7 @@ const TripCardItem = ({ trip }: TripItemProps) => {
   return (
     <ItemCard mb={20} p={20} fullWidth flexDirection="column">
       <Box alignItems="center">
-        <CountryLogo>
-          <Image
-            src={`/countries/${trip.address.country.toUpperCase()}.svg`}
-            layout="fill"
-            alt={`trip_country_${trip.address.country}`}
-          />
-        </CountryLogo>
+        <CountryLogo width={24} height={24} country={trip.address.country} />
         <Box ml={10}>
           <Typography weight={600}>{trip.address.country}</Typography>
         </Box>

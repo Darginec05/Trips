@@ -1,3 +1,5 @@
+import { AddTripResponse, TripFormData, TripHookHandler } from '../../features/trip/types';
+
 export type FieldInputProps = {
   name: string;
   placeholder: string;
@@ -16,4 +18,7 @@ export type FormFieldsProps = {
   isEditable: boolean;
   defaultValues?: any;
   fields?: any[];
+  isLoading: boolean;
+  error: any;
+  handler: TripHookHandler<AddTripResponse, TripFormData>;
 };

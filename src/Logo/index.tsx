@@ -1,8 +1,10 @@
+import { Box } from '../UI/Box';
+
 const Logo = () => {
   return (
-    <div>
+    <Box>
       <img src="/assets/cleevio_logo.svg" alt="cleevio_logo" />
-    </div>
+    </Box>
   );
 };
 

@@ -1,16 +1,14 @@
+import { memo } from 'react';
 import { Box } from '../../UI/Box';
 import { Button } from '../../UI/Button';
 import { Typography } from '../../UI/Typography';
 import { ItemCard } from './styled';
-import { Trip } from '../../features/trip/types';
+import { TripItemProps } from '../../features/trip/types';
 import { getFormatedDate, isPastTrip } from '../../features/trip/helpers';
 import { CountryLogo } from '../CountryLogo';
+import { cut } from '../../utils/cut';
 
-type TripItemProps = {
-  trip: Trip;
-};
-
-const TripCardItem = ({ trip }: TripItemProps) => {
+const TripCardItemView = ({ trip }: TripItemProps) => {
   const isPast = isPastTrip(trip.end_date);
 
   return (
@@ -28,9 +26,9 @@ const TripCardItem = ({ trip }: TripItemProps) => {
       </Box>
       <Box mt={4}>
         <Typography size="sm">
-          <strong>{trip.company_name}</strong>
+          <strong>{cut(trip.company_name, 25)}</strong>
           <br />
-          {trip.address.street}
+          {cut(trip.address.street, 120)}
         </Typography>
       </Box>
       <Box mt={22}>
@@ -64,4 +62,4 @@ const TripCardItem = ({ trip }: TripItemProps) => {
   );
 };
 
-export { TripCardItem };
+export const TripCardItem = memo(TripCardItemView);

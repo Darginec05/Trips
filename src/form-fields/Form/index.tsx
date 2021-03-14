@@ -36,8 +36,8 @@ const Form = ({ onSubmit, isEditable, schema, disabled, ...methods }: FormProps)
       {isEditable && (
         <Box fullWidth justifyContent="center">
           <SubmitButton>
-            <Button type="submit" padding="20px 13px" fullWidth justifyContent="space-between" disabled={disabled}>
-              <Typography>Save</Typography>
+            <Button type="submit" padding="13px 20px" fullWidth justifyContent="space-between" disabled={disabled}>
+              <Typography size="sm">Save</Typography>
               <img src="/assets/checkmark.svg" alt="save_icon" />
             </Button>
           </SubmitButton>

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Typography } from '../../UI/Typography';
+import { SwitchMenuButton } from '../Menu/styled';
 
 export const MainContentUI = styled.main`
   flex-grow: 1;
@@ -18,13 +19,37 @@ export const MainContentUI = styled.main`
     }
   }
 
-  @media only screen and (max-width: 600px) {
-    padding: 20px;
+  @media only screen and (max-width: 768px) {
+    padding: 0 20px 20px 20px;
   }
 `;
 
 export const Title = styled(Typography)`
+  width: 100% !important;
+
+  @media only screen and (max-width: 768px) {
+    text-align: center;
+    font-size: 14px;
+    line-height: 19px;
+  }
+`;
+
+export const TitleWrap = styled.div`
+  width: 100%;
+  position: relative;
   padding-bottom: 24px;
   border-bottom: 1px solid #f1f1f2;
-  width: 100%;
+  display: flex;
+
+  @media only screen and (max-width: 768px) {
+    justify-content: center;
+    padding: 32px 0;
+  }
+`;
+
+export const OpenMenu = styled(SwitchMenuButton)`
+  @media only screen and (max-width: 768px) {
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+  }
 `;

@@ -5,7 +5,7 @@ export const FieldWrap = styled(Box)`
   background: #f9f9fa;
   border-radius: ${(props) => props.borderRadius};
   width: 100%;
-  max-width: 600px;
+  max-width: 768px;
 `;
 
 export const Form = styled.form`

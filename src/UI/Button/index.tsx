@@ -14,6 +14,7 @@ const Button = ({
   href = '/',
   type = 'button',
   bgColor = 'primary',
+  ...rest
 }: ButtonProps) => {
   if (isLink) {
     return (
@@ -25,6 +26,7 @@ const Button = ({
           justifyContent={justifyContent}
           padding={padding}
           fullWidth={fullWidth}
+          {...rest}
         >
           {children}
         </ButtonUI>

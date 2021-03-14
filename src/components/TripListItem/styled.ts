@@ -6,6 +6,8 @@ export const Item = styled(BoxUI)`
   border-radius: 10px;
   transition: background 150ms ease-in;
   height: 88px;
+  opacity: ${(props) => (props.isLoading ? '.7' : '1')};
+  transition: opacity 200ms ease-in;
 
   &:hover {
     background: #f8f8f9;
@@ -25,11 +27,17 @@ export const Divider = styled.div`
 `;
 
 export const ButtonWrap = styled(BoxUI)`
-  margin: 0 0 0 auto;
+  margin: 0 0 0 auto !important;
+  height: 48px;
 
   button {
+    width: 48px;
     &:first-child {
       margin-right: 20px;
     }
+  }
+
+  a {
+    width: 48px;
   }
 `;

@@ -5,9 +5,18 @@ import { MainContent } from '../../../components/MainContent';
 import { getTripFormValues } from '../../../features/trip/helpers';
 import { useTrip } from '../../../features/trip/hooks';
 import { TripDetailType } from '../../../features/trip/types';
+import { Error } from '../../../components/Error';
 
 const TripDetailPage = ({ tripId }: TripDetailType) => {
-  const { trip, isLoading } = useTrip(tripId);
+  const { trip, isLoading, error } = useTrip(tripId);
+
+  if (error) {
+    return (
+      <MainContent title="Edit trip">
+        <Error message={error.status === 404 ? 'Trip not found' : 'Something went wrong. Please refresh page'} />
+      </MainContent>
+    );
+  }
 
   if (!trip || isLoading) return <Loader />;
 

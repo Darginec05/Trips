@@ -8,7 +8,7 @@ export const COUNTRY_MAP: { [x: string]: CountryItem } = {
   Netherlands: {
     value: 'aw',
     label: 'Netherlands',
-    src: '/countries/AW.svg',
+    src: '/countries/NL.svg',
   },
   Greece: {
     value: 'gr',

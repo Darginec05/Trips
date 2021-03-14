@@ -1,14 +1,15 @@
 /* eslint-disable max-len */
 import { AppProps } from 'next/dist/next-server/lib/router/router';
 import Head from 'next/head';
-import { QueryClientProvider, QueryClient } from 'react-query';
+import { QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { ThemeProvider } from 'styled-components';
 import { Container } from '../components/Container';
+import { MenuProvider } from '../components/Menu/context';
+import { queryClient } from '../config/reactQuery';
 import '../styles/global.css';
 import { theme } from '../styles/theme';
 
-const queryClient = new QueryClient();
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -22,9 +23,11 @@ export default function App({ Component, pageProps }: AppProps) {
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools initialIsOpen={false} />
         <ThemeProvider theme={theme}>
-          <Container>
-            <Component {...pageProps} />
-          </Container>
+          <MenuProvider>
+            <Container>
+              <Component {...pageProps} />
+            </Container>
+          </MenuProvider>
         </ThemeProvider>
       </QueryClientProvider>
     </>

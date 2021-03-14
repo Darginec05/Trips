@@ -1,3 +1,5 @@
+import { UseMutateAsyncFunction } from 'react-query';
+
 type TripAddress = {
   street: string;
   street_num?: string;
@@ -16,6 +18,10 @@ export type Trip = {
   covid_test_date?: Date;
 };
 
+export type TripItemProps = {
+  trip: Trip;
+};
+
 export type TripFormData = Omit<Trip, 'id'>;
 
 export type TripDetailType = {
@@ -27,3 +33,5 @@ export type TripFormValues = Omit<Trip, 'id' | 'address' | 'covid' | 'country'> 
   TripAddress & { covid: string; country: { label: string; value: string } };
 
 export type AddTripResponse = Pick<Trip, 'id'>;
+
+export type TripHookHandler<T, K> = UseMutateAsyncFunction<T, unknown, K>;

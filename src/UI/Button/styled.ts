@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { ButtonStyleProps } from './types';
 
 export const ButtonUI = styled.button<ButtonStyleProps>`
-  padding: ${(props) => props.theme.button.padding};
+  padding: ${(props) => props.padding || props.theme.button.padding};
   display: flex;
   justify-content: ${(props) => props.justifyContent};
   align-items: center;

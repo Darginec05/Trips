@@ -1,6 +1,6 @@
-import { UseMutateAsyncFunction, useMutation, useQuery, useQueryClient } from 'react-query';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { request } from '../../utils/request';
-import { AddTripResponse, Trip, TripFormData } from './types';
+import { AddTripResponse, Trip, TripFormData, TripHookHandler } from './types';
 
 /**
  *
@@ -12,12 +12,12 @@ export const useTrips = (disable = false) => {
   const fetchTrips = () => request<Trip[]>({ url: '/trip' });
 
   const cachedTrips: Trip[] | undefined = queryClient.getQueryData<Trip[]>('Trips');
-  const { data, isLoading } = useQuery('Trips', fetchTrips, {
+  const { data, isLoading, error } = useQuery('Trips', fetchTrips, {
     enabled: typeof cachedTrips === 'undefined' && !disable,
     retry: 0,
   });
 
-  return { trips: cachedTrips || data, isLoading };
+  return { trips: cachedTrips || data, isLoading, error };
 };
 
 /**
@@ -25,17 +25,17 @@ export const useTrips = (disable = false) => {
  * @param tripId -
  * @returns
  */
-export const useTrip = (tripId: string): { trip: Trip | undefined; isLoading: boolean } => {
+export const useTrip = (tripId: string): { trip: Trip | undefined; isLoading: boolean, error: any } => {
   const queryClient = useQueryClient();
   const fetchTrip = () => request<Trip>({ url: `/trip/${tripId}` });
 
   const cachedTrip: Trip | undefined = queryClient.getQueryData<Trip>(`Trip:${tripId}`);
-  const { data, isLoading } = useQuery(`Trip:${tripId}`, fetchTrip, {
+  const { data, isLoading, error } = useQuery(`Trip:${tripId}`, fetchTrip, {
     enabled: typeof cachedTrip === 'undefined',
     retry: 0,
   });
 
-  return { trip: cachedTrip || data, isLoading };
+  return { trip: cachedTrip || data, isLoading, error };
 };
 
 /**
@@ -43,8 +43,9 @@ export const useTrip = (tripId: string): { trip: Trip | undefined; isLoading: bo
  * @returns
  */
 export const useAddTripMutation = (): {
-  addTrip: UseMutateAsyncFunction<AddTripResponse, unknown, TripFormData>;
+  addTrip: TripHookHandler<AddTripResponse, TripFormData>;
   isLoading: boolean;
+  error: any;
 } => {
   const queryClient = useQueryClient();
 
@@ -60,11 +61,11 @@ export const useAddTripMutation = (): {
     }
   };
 
-  const { mutateAsync, isLoading } = useMutation<AddTripResponse, unknown, TripFormData>(addTrip, {
+  const { mutateAsync, isLoading, error } = useMutation<AddTripResponse, unknown, TripFormData>(addTrip, {
     onSuccess,
   });
 
-  return { addTrip: mutateAsync, isLoading };
+  return { addTrip: mutateAsync, isLoading, error };
 };
 
 /**
@@ -78,20 +79,20 @@ export const useDeleteTripMutation = (tripId: string) => {
   const deleteTrip = () => request<unknown>({ url: `/trip/${tripId}`, method: 'DELETE' });
 
   const onSuccess = async () => {
-    const prevTrips = queryClient.getQueryData<Trip[]>('Trips');
-    if (prevTrips) {
+    const _trips = queryClient.getQueryData<Trip[]>('Trips');
+    if (_trips) {
       queryClient.setQueryData<Trip[]>(
         'Trips',
-        prevTrips.filter((trip) => trip.id !== tripId),
+        _trips.filter((trip) => trip.id !== tripId),
       );
     }
   };
 
-  const { mutateAsync, isLoading } = useMutation(deleteTrip, {
+  const { mutateAsync, isLoading, error } = useMutation(deleteTrip, {
     onSuccess,
   });
 
-  return { deleteTrip: mutateAsync, isLoading };
+  return { deleteTrip: mutateAsync, isLoading, error };
 };
 
 /**
@@ -99,26 +100,37 @@ export const useDeleteTripMutation = (tripId: string) => {
  * @returns
  */
 export const useEditTripMutation = (tripId: string): {
-  addTrip: UseMutateAsyncFunction<AddTripResponse, unknown, TripFormData>;
+  editTrip: TripHookHandler<AddTripResponse, TripFormData>;
   isLoading: boolean;
+  error: any;
 } => {
   const queryClient = useQueryClient();
 
-  const addTrip = async (body: TripFormData) => {
+  const editTrip = async (body: TripFormData) => {
     const _trip = await request<AddTripResponse>({ url: `/trip/${tripId}`, method: 'PUT', body });
     return _trip;
   };
 
-  const onSuccess = async (response: AddTripResponse, trip: TripFormData) => {
-    const prevTrips = queryClient.getQueryData<Trip[]>('Trips');
-    if (prevTrips) {
-      queryClient.setQueryData<Trip[]>('Trips', [...prevTrips, { ...trip, id: response.id }]);
+  const onSuccess = async (response: AddTripResponse, updatedTrip: TripFormData) => {
+    const cached_trips = queryClient.getQueryData<Trip[]>('Trips');
+    const cached_trip = queryClient.getQueryData<Trip>(`Trip:${tripId}`);
+
+    if (cached_trip) {
+      queryClient.setQueryData<Trip>(`Trip:${tripId}`, { id: tripId, ...updatedTrip });
+    }
+
+    if (cached_trips) {
+      const updatedTrips = cached_trips?.map((_trip) => (_trip.id === tripId ? { ..._trip, ...updatedTrip } : _trip));
+      queryClient.setQueryData<Trip[]>(
+        'Trips',
+        updatedTrips,
+      );
     }
   };
 
-  const { mutateAsync, isLoading } = useMutation<AddTripResponse, unknown, TripFormData>(addTrip, {
+  const { mutateAsync, isLoading, error } = useMutation<AddTripResponse, unknown, TripFormData>(editTrip, {
     onSuccess,
   });
 
-  return { addTrip: mutateAsync, isLoading };
+  return { editTrip: mutateAsync, isLoading, error };
 };

@@ -1,17 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { components } from 'react-select';
 import { COUNTRY_MAP } from '../../constants/countries';
 import { SelectField } from '../../form-fields/Select';
-import { request } from '../../utils/request';
 import { Box } from '../../UI/Box';
 import { CountryLogo } from '../CountryLogo';
 import { Typography } from '../../UI/Typography';
 import { OptionItem } from './styled';
-
-type CountryResponse = {
-  value: string;
-  label: string;
-};
+import { useCountries } from '../../hooks/useCountries';
 
 const Control = ({ children, ...props }: any) => {
   // eslint-disable-next-line react/destructuring-assignment
@@ -44,12 +39,7 @@ const Option = (props: any) => {
 };
 
 const CountriesSelect = ({ control, disabled, name, setValue, getValues, onFocus }: any) => {
-  const [countries, setCountries] = useState<CountryResponse[]>([]);
-
-  const getCountry = async () => {
-    const _data = await request<CountryResponse[]>({ url: '/country' });
-    setCountries(_data);
-  };
+  const { countries } = useCountries();
 
   useEffect(() => {
     const country = getValues(name);
@@ -58,16 +48,10 @@ const CountriesSelect = ({ control, disabled, name, setValue, getValues, onFocus
     }
   }, []);
 
-  useEffect(() => {
-    if (countries.length === 0) {
-      getCountry();
-    }
-  }, [countries.length]);
-
   return (
     <SelectField
       components={{ Option, Control }}
-      options={countries}
+      options={countries || [{ label: '', value: '' }]}
       instanceId="country_select"
       control={control}
       disabled={disabled}

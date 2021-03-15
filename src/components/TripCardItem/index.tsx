@@ -42,7 +42,7 @@ const TripCardItemView = ({ trip }: TripItemProps) => {
           {' '}
           -
           {' '}
-          {getFormatedDate(trip.end_date)}
+          {getFormatedDate(trip.end_date, 'MMM D, YYYY')}
         </Typography>
       </Box>
       <Box fullWidth style={{ marginTop: 'auto' }}>

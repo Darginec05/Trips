@@ -1,11 +1,6 @@
+import { API_TOKEN, API_URI } from '../config/env';
+
 /* eslint-disable no-throw-literal */
-/* eslint-disable prefer-destructuring */
-// const API_URI: string = process.env.API_URI!;
-// const API_TOKEN: string = process.env.API_TOKEN!;
-
-const API_URI = 'https://task-devel.cleevio-vercel.vercel.app/api';
-const API_TOKEN = 'KA8XaQYx4veMtVF1iFSM';
-
 type Request = {
   url: string;
   method?: 'POST' | 'GET' | 'PUT' | 'DELETE';

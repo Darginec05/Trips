@@ -1,21 +1,13 @@
 import { Typography } from '../../UI/Typography';
+import { FormFieldItemProps } from '../types';
 import { CheckboxInput, CheckboxLabel } from './styled';
 
-const CheckboxField = ({
-  name, id, register, label, checked, value, onChange, disabled,
-}: any) => {
+type CheckboxProps = Omit<FormFieldItemProps, 'components' | 'render'> & { id: string; value: string | number };
+
+const CheckboxField = ({ name, id, register, label, value, disabled }: CheckboxProps) => {
   return (
     <CheckboxLabel htmlFor={id}>
-      <CheckboxInput
-        type="radio"
-        id={id}
-        name={name}
-        checked={checked}
-        value={value}
-        onChange={onChange}
-        ref={register}
-        disabled={disabled}
-      />
+      <CheckboxInput type="radio" id={id} name={name} value={value} ref={register} disabled={disabled} />
       <Typography>{label}</Typography>
     </CheckboxLabel>
   );

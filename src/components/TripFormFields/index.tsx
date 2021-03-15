@@ -17,6 +17,7 @@ const TripFormFields = ({
   fields = TRIP_FORM_FIELDS,
 }: FormFieldsProps) => {
   const router = useRouter();
+
   const { handleSubmit, ...methods } = useForm({
     defaultValues,
     resolver,
@@ -24,9 +25,12 @@ const TripFormFields = ({
 
   const onSubmit = async (values: TripFormValues) => {
     const { zip, street, street_num, city, covid, country, ...tripValues } = values;
+    const hasCovidTest = typeof covid === 'string' ? covid === '1' : covid;
+
+    // street number has validation problems in API
     const tripBody: TripFormData = {
       ...tripValues,
-      covid: covid === '1',
+      covid: hasCovidTest,
       address: {
         zip,
         street,
@@ -34,6 +38,7 @@ const TripFormFields = ({
         country: country.label,
       },
     };
+
     await handler(tripBody);
     router.push('/');
   };

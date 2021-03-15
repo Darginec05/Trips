@@ -3,9 +3,7 @@ import { request } from '../../utils/request';
 import { AddTripResponse, Trip, TripFormData, TripHookHandler } from './types';
 
 /**
- *
- * @param disable
- * @returns
+ * Hook for retrieving Trips. First, it checks if trips exists in the cache to avoid unnecessary api call.
  */
 export const useTrips = (disable = false) => {
   const queryClient = useQueryClient();
@@ -21,9 +19,7 @@ export const useTrips = (disable = false) => {
 };
 
 /**
- *
- * @param tripId -
- * @returns
+ * Hook for retrieving Trip. First, it checks if it exists in the cache to avoid unnecessary api call.
  */
 export const useTrip = (tripId: string): { trip: Trip | undefined; isLoading: boolean, error: any } => {
   const queryClient = useQueryClient();
@@ -39,8 +35,7 @@ export const useTrip = (tripId: string): { trip: Trip | undefined; isLoading: bo
 };
 
 /**
- *
- * @returns
+ * Hook for adding trip
  */
 export const useAddTripMutation = (): {
   addTrip: TripHookHandler<AddTripResponse, TripFormData>;
@@ -69,9 +64,7 @@ export const useAddTripMutation = (): {
 };
 
 /**
- *
- * @param tripId
- * @returns
+ * Hook for deleting trip
  */
 export const useDeleteTripMutation = (tripId: string) => {
   const queryClient = useQueryClient();
@@ -96,8 +89,7 @@ export const useDeleteTripMutation = (tripId: string) => {
 };
 
 /**
- *
- * @returns
+ * Hook for editing trip
  */
 export const useEditTripMutation = (tripId: string): {
   editTrip: TripHookHandler<AddTripResponse, TripFormData>;

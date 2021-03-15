@@ -6,13 +6,17 @@ export const getFormatedDate = (date: Date, format = 'MMM D') => dayjs(date).for
 export const getTripFormValues = (trip: Trip): any => {
   const { address, id, ...tripValues } = trip;
 
-  const { start_date, end_date } = tripValues;
+  const { start_date, end_date, covid_test_date, covid } = tripValues;
 
   return {
     ...tripValues,
     ...address,
+    covid: covid ? '1' : '0',
     start_date: getFormatedDate(start_date, 'YYYY-MM-DD'),
     end_date: getFormatedDate(end_date, 'YYYY-MM-DD'),
+    covid_test_date: covid_test_date
+      ? getFormatedDate(covid_test_date, 'YYYY-MM-DD')
+      : getFormatedDate(new Date(), 'YYYY-MM-DD'),
   };
 };
 

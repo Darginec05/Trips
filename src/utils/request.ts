@@ -22,7 +22,7 @@ export async function request<T>({ url, method = 'GET', headers = {}, body }: Re
         'content-type': 'application/json',
         ...headers,
       },
-      body: body ? JSON.stringify(body) : undefined,
+      body: (body && method !== 'GET') ? JSON.stringify(body) : undefined,
     });
 
     if (!response.ok) throw { status: response.status, message: response.statusText };

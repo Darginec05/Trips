@@ -6,7 +6,7 @@ export const Item = styled(BoxUI)`
   border-radius: 10px;
   transition: background 150ms ease-in;
   height: 88px;
-  opacity: ${(props) => (props.isLoading ? '.7' : '1')};
+  opacity: ${(props) => (props.isLoading ? '.4' : '1')};
   transition: opacity 200ms ease-in;
 
   &:hover {

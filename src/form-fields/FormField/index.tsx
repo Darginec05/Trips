@@ -1,6 +1,7 @@
 import { createElement } from 'react';
 import { Box } from '../../UI/Box';
 import { Typography } from '../../UI/Typography';
+import { FormFieldItemProps } from '../types';
 import { FieldWrap } from './styled';
 
 const FormFieldItem = ({
@@ -12,25 +13,30 @@ const FormFieldItem = ({
   register,
   watch,
   render,
-  error,
-  clearErrors,
+  errors,
   name,
-  ...inputProps
-}: any) => {
+  noPadding = false,
+  ...rest
+}: FormFieldItemProps) => {
   const props = {
     watch,
     control,
     register,
-    error,
+    errors,
     name,
-    onFocus: () => clearErrors(name),
-    ...inputProps,
+    ...rest,
   };
 
-  const hasError = !!error;
+  const hasError = !!errors[name];
 
   return (
-    <FieldWrap p={20} mt={hasSpace ? 23 : 0} fullWidth flexDirection="column" borderRadius={borderRadius}>
+    <FieldWrap
+      p={noPadding ? 0 : 20}
+      mt={hasSpace ? 23 : 0}
+      fullWidth
+      flexDirection="column"
+      borderRadius={borderRadius}
+    >
       <Typography color="carbon" size="sm">
         {label}
       </Typography>
@@ -39,7 +45,7 @@ const FormFieldItem = ({
       </Box>
       {hasError && (
         <Typography color="error" size="xs" style={{ marginTop: 3 }}>
-          {error.message}
+          {errors[name].message}
         </Typography>
       )}
     </FieldWrap>

@@ -1,4 +1,5 @@
-import { createContext, ReactNode, useState } from 'react';
+import { Router } from 'next/router';
+import { createContext, ReactNode, useEffect, useState } from 'react';
 
 export type MenuContextState = {
   isOpenMenu: boolean;
@@ -17,6 +18,12 @@ const MenuProvider = ({ children }: { children: ReactNode }) => {
 
   const closeMenu = () => setMenuOpen(false);
   const openMenu = () => setMenuOpen(true);
+
+  useEffect(() => {
+    Router.events.on('routeChangeComplete', closeMenu);
+
+    return () => Router.events.off('routeChangeComplete', closeMenu);
+  }, []);
 
   return <MenuContext.Provider value={{ isOpenMenu, closeMenu, openMenu }}>{children}</MenuContext.Provider>;
 };

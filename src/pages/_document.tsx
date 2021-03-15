@@ -31,6 +31,12 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
+          <meta name="description" content="Cleevio test task" />
+          <meta name="title" content="Cleevio - Trips" />
+          <meta property="og:type" content="website" />
+          <meta property="og:title" content="Cleevio - Trips" />
+          <meta property="og:description" content="Cleevio test task" />
+          <meta property="og:site_name" content="Cleevio" />
           <meta name="application-name" content="Trips App" />
           <link rel="manifest" href="/manifest.json" />
           <link rel="shortcut icon" href="/favicon.ico" />

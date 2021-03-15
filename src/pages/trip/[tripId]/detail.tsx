@@ -22,6 +22,7 @@ const TripDetailPage = ({ tripId }: TripDetailType) => {
 
   return (
     <MainContent title="View trip">
+      {/* @ts-ignore: Unreachable code error */}
       <TripFormFields
         isEditable={false}
         defaultValues={getTripFormValues(trip)}

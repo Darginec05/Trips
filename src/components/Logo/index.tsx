@@ -1,4 +1,4 @@
-import { Box } from '../UI/Box';
+import { Box } from '../../UI/Box';
 
 const Logo = () => {
   return (

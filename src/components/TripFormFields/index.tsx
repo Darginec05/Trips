@@ -9,12 +9,12 @@ import { FormFieldsProps } from './types';
 import { resolver } from './validation';
 
 const TripFormFields = ({
-  defaultValues = {},
-  isEditable = true,
   handler,
-  fields = TRIP_FORM_FIELDS,
   isLoading,
   error,
+  defaultValues = {},
+  isEditable = true,
+  fields = TRIP_FORM_FIELDS,
 }: FormFieldsProps) => {
   const router = useRouter();
   const { handleSubmit, ...methods } = useForm({

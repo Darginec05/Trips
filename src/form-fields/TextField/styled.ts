@@ -9,6 +9,9 @@ export const StyledInput = styled.input<InputStyleProps>`
   border-radius: 10px;
   font-family: 'Open Sans', sans-serif;
   background: #ffffff;
+  font-size: 14px;
+  line-height: 19px;
+  font-weight: 400;
 
   &:disabled {
     background: #ededed;

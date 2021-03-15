@@ -3,11 +3,11 @@ import { TripListView } from '../components/TripListView';
 import { useTrips } from '../features/trip/hooks';
 
 const TripListPage = () => {
-  const { trips, isLoading } = useTrips();
+  const { trips, isLoading, error } = useTrips();
 
   return (
     <MainContent title="Your trips">
-      <TripListView trips={trips} mode="list" isLoading={isLoading} />
+      <TripListView trips={trips} mode="list" error={error} isLoading={isLoading} />
     </MainContent>
   );
 };

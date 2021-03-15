@@ -15,7 +15,7 @@ export const TRIP_FORM_FIELDS: any[] = [
   {
     label: 'Start date',
     name: 'start_date',
-    placeholder: 'dd. mm. year',
+    placeholder: 'yyyy-mm-dd',
     hasSpace: true,
     borderRadius: '0',
     component: DatePickerField,
@@ -23,7 +23,7 @@ export const TRIP_FORM_FIELDS: any[] = [
   {
     label: 'End date',
     name: 'end_date',
-    placeholder: 'dd. mm. year',
+    placeholder: 'yyyy-mm-dd',
     hasSpace: false,
     borderRadius: '0',
     component: DatePickerField,

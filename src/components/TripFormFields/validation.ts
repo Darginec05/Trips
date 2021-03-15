@@ -11,10 +11,10 @@ const schema = yup.object().shape({
       label: yup.string().required('Please fill the required field'),
       value: yup.string().required('Please fill the required field'),
     }),
-  start_date: yup.date().typeError('Must be a valid type').required('Please fill the required field'),
+  start_date: yup.date().typeError('Must be a valid type: yyyy-mm-dd').required('Please fill the required field'),
   end_date: yup
     .date()
-    .typeError('Must be a valid type')
+    .typeError('Must be a valid type: yyyy-mm-dd')
     .required('Please fill the required field')
     .min(yup.ref('start_date'), ({ min }) => `Date needs to be before ${formatDate(min)}`),
   company_name: yup.string().required('Please fill the required field'),

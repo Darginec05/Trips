@@ -111,7 +111,7 @@ export const useEditTripMutation = (tripId: string): {
     return _trip;
   };
 
-  const onSuccess = async (response: AddTripResponse, updatedTrip: TripFormData) => {
+  const onSuccess = async (_response: AddTripResponse, updatedTrip: TripFormData) => {
     const cached_trips = queryClient.getQueryData<Trip[]>('Trips');
     const cached_trip = queryClient.getQueryData<Trip>(`Trip:${tripId}`);
 

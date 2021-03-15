@@ -22,7 +22,12 @@ const TripDetailPage = ({ tripId }: TripDetailType) => {
 
   return (
     <MainContent title="View trip">
-      <TripFormFields isEditable={false} defaultValues={getTripFormValues(trip)} />
+      <TripFormFields
+        isEditable={false}
+        defaultValues={getTripFormValues(trip)}
+        isLoading={false}
+        error={null}
+      />
     </MainContent>
   );
 };

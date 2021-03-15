@@ -3,9 +3,9 @@ import { CheckboxField } from '../../form-fields/Checkbox';
 // import { TextField } from '../../form-fields/TextField';
 import { Box } from '../../UI/Box';
 
-const CovidCheckbox = ({ register, name, watch, placeholder, getValues, setValue, disabled }: any) => {
-  const field = watch(name);
-  const isTested = field === '1';
+const CovidCheckbox = ({ register, name, placeholder, getValues, setValue, disabled }: any) => {
+  // const field = watch(name);
+  // const isTested = field === '1';
 
   useEffect(() => {
     const covidTest: null | string = getValues(name);

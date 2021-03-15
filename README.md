@@ -1,4 +1,4 @@
-## [Cleevio Trips App (click)](https://trips-theta.vercel.app/)
+## [Cleevio Trips App (click)](https://trips-m46vwyym1-darginec05.vercel.app/)
 ### Application for managing your trips:
 * Create trip
 * Delete trip

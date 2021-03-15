@@ -1,4 +1,4 @@
-## [Cleevio Trips App (click)](https://trips-j0ue7jo7e-darginec05.vercel.app/)
+## [Cleevio Trips App (click)](https://trips-j8rtbz08u-darginec05.vercel.app/)
 ### Application for managing your trips:
 * Create trip
 * Delete trip

@@ -35,3 +35,8 @@ export type TripFormValues = Omit<Trip, 'id' | 'address' | 'covid' | 'country'> 
 export type AddTripResponse = Pick<Trip, 'id'>;
 
 export type TripHookHandler<T, K> = UseMutateAsyncFunction<T, unknown, K>;
+
+export type HookReturnOptions = {
+  isLoading: boolean;
+  error: any;
+};

@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { request } from '../../utils/request';
-import { AddTripResponse, Trip, TripFormData, TripHookHandler } from './types';
+import { AddTripResponse, HookReturnOptions, Trip, TripFormData, TripHookHandler } from './types';
 
 /**
  * Hook for retrieving Trips. First, it checks if trips exists in the cache to avoid unnecessary api call.
@@ -21,7 +21,7 @@ export const useTrips = (disable = false) => {
 /**
  * Hook for retrieving Trip. First, it checks if it exists in the cache to avoid unnecessary api call.
  */
-export const useTrip = (tripId: string): { trip: Trip | undefined; isLoading: boolean, error: any } => {
+export const useTrip = (tripId: string): HookReturnOptions & { trip: Trip | undefined } => {
   const queryClient = useQueryClient();
   const fetchTrip = () => request<Trip>({ url: `/trip/${tripId}` });
 
@@ -37,10 +37,8 @@ export const useTrip = (tripId: string): { trip: Trip | undefined; isLoading: bo
 /**
  * Hook for adding trip
  */
-export const useAddTripMutation = (): {
+export const useAddTripMutation = (): HookReturnOptions & {
   addTrip: TripHookHandler<AddTripResponse, TripFormData>;
-  isLoading: boolean;
-  error: any;
 } => {
   const queryClient = useQueryClient();
 
@@ -66,7 +64,9 @@ export const useAddTripMutation = (): {
 /**
  * Hook for deleting trip
  */
-export const useDeleteTripMutation = (tripId: string) => {
+export const useDeleteTripMutation = (
+  tripId: string,
+): HookReturnOptions & { deleteTrip: TripHookHandler<unknown, void> } => {
   const queryClient = useQueryClient();
 
   const deleteTrip = () => request<unknown>({ url: `/trip/${tripId}`, method: 'DELETE' });
@@ -91,11 +91,9 @@ export const useDeleteTripMutation = (tripId: string) => {
 /**
  * Hook for editing trip
  */
-export const useEditTripMutation = (tripId: string): {
-  editTrip: TripHookHandler<AddTripResponse, TripFormData>;
-  isLoading: boolean;
-  error: any;
-} => {
+export const useEditTripMutation = (
+  tripId: string,
+): HookReturnOptions & { editTrip: TripHookHandler<AddTripResponse, TripFormData> } => {
   const queryClient = useQueryClient();
 
   const editTrip = async (body: TripFormData) => {
@@ -113,10 +111,7 @@ export const useEditTripMutation = (tripId: string): {
 
     if (cached_trips) {
       const updatedTrips = cached_trips?.map((_trip) => (_trip.id === tripId ? { ..._trip, ...updatedTrip } : _trip));
-      queryClient.setQueryData<Trip[]>(
-        'Trips',
-        updatedTrips,
-      );
+      queryClient.setQueryData<Trip[]>('Trips', updatedTrips);
     }
   };
 
